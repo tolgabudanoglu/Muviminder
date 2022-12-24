@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1069993892417",
+    "project_id": "muviminder",
+    "storage_bucket": "muviminder.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069993892417:android:206ca4bfc95e17cffb84c0",
+        "android_client_info": {
+          "package_name": "com.example.muviminder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069993892417-ost0jt9iuin1t5l4jhujpo98dv4vtjnr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaxwKXosPNQwK21ImzWI03kyFzDq96GBY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069993892417-ost0jt9iuin1t5l4jhujpo98dv4vtjnr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

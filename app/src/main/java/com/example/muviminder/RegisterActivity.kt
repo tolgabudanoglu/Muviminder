@@ -45,11 +45,12 @@ class RegisterActivity : AppCompatActivity() {
                     if(p0.isSuccessful){
 
                         Toast.makeText(this@RegisterActivity,"kayıt başarılı",Toast.LENGTH_SHORT).show()
+                        mailSend()
                         FirebaseAuth.getInstance().signOut()
                     }
                     else{
 
-                        Toast.makeText(this@RegisterActivity,"kayıt başarırısız",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegisterActivity,"kayıt başarırısız" + p0.exception?.message,Toast.LENGTH_SHORT).show()
                     }
 
 
@@ -60,6 +61,27 @@ class RegisterActivity : AppCompatActivity() {
 
 
 
+    }
+
+    private fun mailSend() {
+        var kullanıcı = FirebaseAuth.getInstance().currentUser
+        if (kullanıcı != null){
+            kullanıcı.sendEmailVerification()
+                .addOnCompleteListener(object :OnCompleteListener<Void>{
+                    override fun onComplete(p0: Task<Void>) {
+
+                        if (p0.isSuccessful){
+                            Toast.makeText(this@RegisterActivity,"mail atıldı",Toast.LENGTH_SHORT).show()
+
+                        }else{
+
+                            Toast.makeText(this@RegisterActivity,"mail gönderilirken sorun oluştu" + p0.exception?.message,Toast.LENGTH_SHORT).show()
+
+                        }
+                    }
+
+                })
+        }
     }
 
     private fun progressBarShow(){

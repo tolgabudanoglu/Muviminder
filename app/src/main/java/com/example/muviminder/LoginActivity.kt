@@ -13,49 +13,122 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 
 class LoginActivity : AppCompatActivity() {
+
+    lateinit var myAuthStateListener: FirebaseAuth.AuthStateListener
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        initMyAuthStateListener()
 
-        tvKayıtOlLogin.setOnClickListener{
-            var intent = Intent(this,RegisterActivity::class.java)
+
+        tvKayıtOlLogin.setOnClickListener {
+            var intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
-        btnLogin.setOnClickListener{
+        tvSendMail.setOnClickListener {
+            var dialogGoster = MailAgain()
+            dialogGoster.show(supportFragmentManager,"goster")
+        }
 
-            if (etMailLogin.text.isNotEmpty()&& etPasswordLogin.text.isNotEmpty()){
+        btnLogin.setOnClickListener {
+
+            if (etMailLogin.text.isNotEmpty() && etPasswordLogin.text.isNotEmpty()) {
                 progressBarShow()
-                FirebaseAuth.getInstance().signInWithEmailAndPassword(etMailLogin.text.toString(),etPasswordLogin.text.toString())
-                    .addOnCompleteListener(object : OnCompleteListener<AuthResult>{
+                FirebaseAuth.getInstance().signInWithEmailAndPassword(
+                    etMailLogin.text.toString(),
+                    etPasswordLogin.text.toString()
+                )
+                    .addOnCompleteListener(object : OnCompleteListener<AuthResult> {
                         override fun onComplete(p0: Task<AuthResult>) {
 
-                            if (p0.isSuccessful){
+                            if (p0.isSuccessful) {
 
                                 progressBarHide()
-                                Toast.makeText(this@LoginActivity,"başarılı giriş",Toast.LENGTH_SHORT).show()
+                                //Toast.makeText(
+                                 //   this@LoginActivity,
+                                   // "başarılı giriş",
+                                   // Toast.LENGTH_SHORT
+                                //).show()
 
-                            }else{
+
+                            } else {
 
                                 progressBarHide()
-                                Toast.makeText(this@LoginActivity,"hatalı giriş "+p0.exception,Toast.LENGTH_SHORT).show()
+
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "hatalı giriş " + p0.exception,
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         }
 
                     })
 
-            }else{
-                Toast.makeText(this@LoginActivity,"boş alanları doldurunuz",Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this@LoginActivity, "boş alanları doldurunuz", Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+        }
+
+
+    }
+
+    private fun progressBarShow() {
+        progressBarLogin.visibility = View.VISIBLE
+    }
+
+    private fun progressBarHide() {
+        progressBarLogin.visibility = View.INVISIBLE
+    }
+
+    private fun initMyAuthStateListener() {
+
+        myAuthStateListener = object : FirebaseAuth.AuthStateListener {
+            override fun onAuthStateChanged(p0: FirebaseAuth) {
+
+                var kullanici = p0.currentUser
+                if (kullanici != null){
+                    if (kullanici.isEmailVerified){
+
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "mail adresini onayı yapılmış giriş yapabilirisiniz ",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        var intent = Intent(this@LoginActivity,MainActivity::class.java)
+                        startActivity(intent)
+                        finish()
+
+                    }else{
+
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "mail adresini onaylayın ",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                        FirebaseAuth.getInstance().signOut()
+
+                    }
+                }
+
             }
 
         }
     }
 
-    private fun progressBarShow(){
-        progressBarLogin.visibility = View.VISIBLE
+    override fun onStart() {
+        super.onStart()
+        FirebaseAuth.getInstance().addAuthStateListener(myAuthStateListener)
     }
-    private fun progressBarHide(){
-        progressBarLogin.visibility = View.INVISIBLE
+
+    override fun onStop() {
+        super.onStop()
+        FirebaseAuth.getInstance().removeAuthStateListener(myAuthStateListener)
     }
 }

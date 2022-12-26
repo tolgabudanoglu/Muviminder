@@ -34,6 +34,11 @@ class LoginActivity : AppCompatActivity() {
             dialogGoster.show(supportFragmentManager,"goster")
         }
 
+        tvPasswordRegen.setOnClickListener {
+            var dialogSifreyiTekrarGonder = PasswordRemember()
+            dialogSifreyiTekrarGonder.show(supportFragmentManager,"passwordRemember")
+        }
+
         btnLogin.setOnClickListener {
 
             if (etMailLogin.text.isNotEmpty() && etPasswordLogin.text.isNotEmpty()) {

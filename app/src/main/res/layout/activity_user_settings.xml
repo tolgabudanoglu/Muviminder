@@ -29,27 +29,27 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/etSettingsMail"
+        android:id="@+id/etSettingsPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
-        android:text="şuanki mail   :"
+        android:text="şuanki şifreniz   :"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSettingsAd" />
 
     <EditText
-        android:id="@+id/etSettingsMailReal"
+        android:id="@+id/etSettingsPasswordReal"
         android:layout_width="287dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/etSettingsMail"
+        app:layout_constraintStart_toEndOf="@+id/etSettingsPassword"
         app:layout_constraintTop_toBottomOf="@+id/etSettingsKullaniciAdi"
         tools:ignore="MissingConstraints" />
 
@@ -57,21 +57,110 @@
         android:id="@+id/btnSettingsReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_marginTop="60dp"
         android:text="ŞİFRE SIFIRLA"
+        android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etSettingsMail" />
+        app:layout_constraintTop_toBottomOf="@+id/etSettingsPassword" />
 
     <Button
         android:id="@+id/btnSettingsSave"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="48dp"
         android:text="Kaydet"
+        android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toEndOf="@+id/btnSettingsReset"
-        app:layout_constraintTop_toBottomOf="@+id/etSettingsMailReal" />
+        app:layout_constraintTop_toBottomOf="@+id/etSettingsPasswordReal" />
+
+    <Button
+        android:id="@+id/btnSettingsPasswordAndMail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="Şifre ve mail güncelle"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etSettingsPasswordReal" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/UserSettingLayout"
+        android:layout_width="409dp"
+        android:layout_height="386dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSettingsPasswordAndMail">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="16dp"
+            android:text="yeni email :"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etSettingUpdateMail" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="yeni şifre"
+            app:layout_constraintEnd_toEndOf="@+id/textView"
+            app:layout_constraintHorizontal_bias="0.734"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/etSettingsUpdatePassword" />
+
+        <EditText
+            android:id="@+id/etSettingUpdateMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/etSettingsUpdatePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.566"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/etSettingUpdateMail" />
+
+        <Button
+            android:id="@+id/btnSettingsUpdatePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="Şifreyi Güncelle"
+            app:layout_constraintEnd_toStartOf="@+id/btnSettingsUpdateMail"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSettingsUpdatePassword" />
+
+        <Button
+            android:id="@+id/btnSettingsUpdateMail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="Maili güncelle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.876"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etSettingsUpdatePassword" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

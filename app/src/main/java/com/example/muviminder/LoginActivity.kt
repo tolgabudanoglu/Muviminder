@@ -48,7 +48,16 @@ class LoginActivity : AppCompatActivity() {
                             if (p0.isSuccessful) {
 
                                 progressBarHide()
-                                //Toast.makeText(
+
+                                if (!p0.result.user?.isEmailVerified!!){
+                                    FirebaseAuth.getInstance().signOut()
+
+
+                                }else{
+
+
+                                }
+                                     //Toast.makeText(
                                  //   this@LoginActivity,
                                    // "başarılı giriş",
                                    // Toast.LENGTH_SHORT
@@ -95,7 +104,6 @@ class LoginActivity : AppCompatActivity() {
                 var kullanici = p0.currentUser
                 if (kullanici != null){
                     if (kullanici.isEmailVerified){
-
                         Toast.makeText(
                             this@LoginActivity,
                             "mail adresini onayı yapılmış giriş yapabilirisiniz ",
@@ -105,6 +113,8 @@ class LoginActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
 
+
+
                     }else{
 
                         Toast.makeText(
@@ -112,7 +122,7 @@ class LoginActivity : AppCompatActivity() {
                             "mail adresini onaylayın ",
                             Toast.LENGTH_SHORT
                         ).show()
-                        FirebaseAuth.getInstance().signOut()
+
 
                     }
                 }

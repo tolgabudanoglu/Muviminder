@@ -8,6 +8,7 @@ import android.view.MenuItem
 import androidx.core.app.ShareCompat.IntentBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuth.AuthStateListener
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,6 +22,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initAuthStateListener()
+        setUserSettings()
+    }
+
+    private fun setUserSettings(){
+        var kullanici = FirebaseAuth.getInstance().currentUser
+        if (kullanici != null){
+            tvKullaniciAdi.text = if (kullanici.displayName.isNullOrEmpty())"tanımlanmadı" else kullanici.displayName
+            tvMail.text = kullanici.email
+            tvUserId.text = kullanici.uid
+
+        }
     }
 
     private fun initAuthStateListener() {
@@ -56,6 +68,7 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.HesapAyarları->{
+                var intent = Intent(this,UserSettings::class.java)
                 startActivity(intent)
                 return true
             }
@@ -71,13 +84,14 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         kullaciyiKontrolEt()
+        setUserSettings()
     }
 
     private fun kullaciyiKontrolEt() {
         var kullanici = FirebaseAuth.getInstance().currentUser
         if (kullanici == null){
             var intent = Intent(this@MainActivity,LoginActivity::class.java)
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
 
@@ -94,5 +108,6 @@ class MainActivity : AppCompatActivity() {
         if (myAuthStateListener != null){
             FirebaseAuth.getInstance().removeAuthStateListener(myAuthStateListener)
         }
+
     }
 }

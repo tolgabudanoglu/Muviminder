@@ -40,7 +40,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp"
 
-            tools:src="@drawable/head" />
+            android:src="@drawable/head3" />
 
         <EditText
             android:id="@+id/etMailLogin"

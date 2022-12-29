@@ -3,5 +3,6 @@
 
     <item android:id="@+id/menuSignOut" android:title="signOut"></item>
     <item android:id="@+id/HesapAyarları" android:title="Hesap ayarları"></item>
+    <item android:id="@+id/profil" android:title="profil"></item>
 
 </menu>

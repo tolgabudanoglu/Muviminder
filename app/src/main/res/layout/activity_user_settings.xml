@@ -60,6 +60,7 @@
         android:layout_marginTop="60dp"
         android:text="ŞİFRE SIFIRLA"
         android:textSize="10dp"
+        android:background="@drawable/btn_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.007"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,6 +73,7 @@
         android:layout_marginTop="48dp"
         android:text="Kaydet"
         android:textSize="10dp"
+        android:background="@drawable/btn_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.977"
         app:layout_constraintStart_toEndOf="@+id/btnSettingsReset"
@@ -84,6 +86,7 @@
         android:layout_marginTop="48dp"
         android:text="Şifre ve mail güncelle"
         android:textSize="10dp"
+        android:background="@drawable/btn_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSettingsPasswordReal" />
@@ -148,6 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="36dp"
             android:text="Şifreyi Güncelle"
+            android:background="@drawable/btn_background"
             app:layout_constraintEnd_toStartOf="@+id/btnSettingsUpdateMail"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etSettingsUpdatePassword" />
@@ -159,6 +163,7 @@
             android:layout_marginTop="36dp"
             android:text="Maili güncelle"
             app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/btn_background"
             app:layout_constraintHorizontal_bias="0.876"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/etSettingsUpdatePassword" />

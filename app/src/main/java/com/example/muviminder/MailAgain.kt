@@ -61,7 +61,7 @@ class MailAgain : DialogFragment() {
                 mailSendAgain(emailEditText.text.toString(),passwordEditText.text.toString())
 
             }else{
-                Toast.makeText(mContext,"Boş alanları doldurunuz",Toast.LENGTH_SHORT).show()
+                Toast.makeText(mContext,"Boş alanları doldurunuza",Toast.LENGTH_SHORT).show()
             }
         }
 

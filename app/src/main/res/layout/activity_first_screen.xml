@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_first_screen">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_horizontal"
+
+
+            android:src="@drawable/head3" />
+        <ImageView
+            android:layout_width="500dp"
+            android:layout_height="100dp"
+            android:src="@drawable/muvi">
+        </ImageView>
+
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAllCaps="false"
+            android:textSize="21sp"
+            android:textAlignment="textStart"
+            android:background="@drawable/btn_google"
+            android:text="Google ile giriş"
+            android:layout_marginTop="30dp"
+            android:drawableStart="@drawable/google" >
+
+        </Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="Facebook İle Giriş"
+            android:textAllCaps="false"
+            android:textAlignment="textStart"
+            android:textSize="21sp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/btn_facebook"
+            android:drawableStart="@drawable/face"
+            >
+
+        </Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:textSize="21sp"
+            android:background="@drawable/btn_login_background"
+            android:text="Kayıt Ol"
+            android:textAlignment="textStart"
+
+            android:drawableStart="@drawable/register"
+
+            >
+        </Button>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email ile Giriş Yap"
+            android:layout_marginTop="20dp"
+            android:textAllCaps="false"
+            android:textSize="21sp"
+            android:textAlignment="textStart"
+            android:background="@drawable/btn_login_background"
+            android:drawableLeft="@drawable/mailicon">
+
+        </Button>
+
+
+
+
+    </LinearLayout>
+
+</RelativeLayout>

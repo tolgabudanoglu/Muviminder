@@ -15,17 +15,13 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
 
 
-            android:src="@drawable/head3" />
-        <ImageView
-            android:layout_width="500dp"
-            android:layout_height="100dp"
-            android:src="@drawable/muvi">
-        </ImageView>
+            android:src="@drawable/headandwrite" />
+
 
 
         <Button

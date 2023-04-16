@@ -14,7 +14,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "1069993892417-ost0jt9iuin1t5l4jhujpo98dv4vtjnr.apps.googleusercontent.com",
+          "client_id": "1069993892417-f3tlscn967i9dsd39ieqjihe3i8f8s1j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.muviminder",
+            "certificate_hash": "2bb5d85d3a66ed912223574793cfadaf0c96f17b"
+          }
+        },
+        {
+          "client_id": "1069993892417-dm7niuoqgc9trs6ddvdjg1m171lc0sjr.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -27,7 +35,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1069993892417-ost0jt9iuin1t5l4jhujpo98dv4vtjnr.apps.googleusercontent.com",
+              "client_id": "1069993892417-dm7niuoqgc9trs6ddvdjg1m171lc0sjr.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

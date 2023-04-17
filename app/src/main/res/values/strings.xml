@@ -2,4 +2,10 @@
     <string name="app_name">Muviminder</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="facebook_app_id">2373027829542330</string>
+    <string name="fb_login_protocol_scheme">fb2373027829542330</string>
+    <string name="facebook_client_token">3e3cb0de1fb912e7e4fc6229f6c4a425</string>
+
+
 </resources>

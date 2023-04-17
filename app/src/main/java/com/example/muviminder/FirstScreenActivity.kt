@@ -46,13 +46,20 @@ class FirstScreenActivity: AppCompatActivity() {
 
     private fun signInWithGoogle(){
         auth = FirebaseAuth.getInstance()
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+        var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
             .requestEmail()
             .build()
         googleSignInClient = GoogleSignIn.getClient(this,gso)
         val signIntent = googleSignInClient.signInIntent
         launcher.launch(signIntent)
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.default_web_client_id))
+            .requestEmail()
+            .build()
+
+        val googlesigninclient = GoogleSignIn.getClient(this,gso)
+        googlesigninclient.signOut()
     }
 
     private val launcher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()){

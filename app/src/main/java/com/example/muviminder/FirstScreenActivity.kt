@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.facebook.CallbackManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -18,6 +19,9 @@ import kotlinx.android.synthetic.main.activity_first_screen.*
 class FirstScreenActivity: AppCompatActivity() {
 
 
+
+
+    var callbackManager = CallbackManager.Factory.create()
     lateinit var auth : FirebaseAuth
     lateinit var googleSignInClient : GoogleSignInClient
 

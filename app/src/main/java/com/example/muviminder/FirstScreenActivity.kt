@@ -6,12 +6,15 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.facebook.CallbackManager
+import com.facebook.*
+import com.facebook.login.LoginManager
+import com.facebook.login.LoginResult
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import kotlinx.android.synthetic.main.activity_first_screen.*
@@ -19,11 +22,9 @@ import kotlinx.android.synthetic.main.activity_first_screen.*
 class FirstScreenActivity: AppCompatActivity() {
 
 
-
-
     var callbackManager = CallbackManager.Factory.create()
-    lateinit var auth : FirebaseAuth
-    lateinit var googleSignInClient : GoogleSignInClient
+    lateinit var auth: FirebaseAuth
+    lateinit var googleSignInClient: GoogleSignInClient
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,22 +32,51 @@ class FirstScreenActivity: AppCompatActivity() {
         setContentView(R.layout.activity_first_screen)
 
 
-        btnGoogle.setOnClickListener{
+        btnGoogle.setOnClickListener {
             signInWithGoogle()
         }
 
-        btnLoginPage.setOnClickListener{
-            val intent : Intent = Intent(this,LoginActivity::class.java)
+        btnLoginPage.setOnClickListener {
+            val intent: Intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
 
-        btnSignPage.setOnClickListener{
-            val intent : Intent = Intent(this,RegisterActivity::class.java)
+        btnSignPage.setOnClickListener {
+            val intent: Intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
 
+        btnFacebook.setOnClickListener {
+            LoginManager.getInstance()
+                .logInWithReadPermissions(this, listOf("email"))
+        }
 
+        LoginManager.getInstance().registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
+            override fun onSuccess(loginResult: LoginResult) {
+                handleFacebookAccessToken(loginResult.accessToken)
+            }
+
+            override fun onCancel() {
+                // App code
+            }
+
+            override fun onError(exception: FacebookException) {
+                // App code
+            }
+        })
+
+}
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        // Pass the activity result back to the Facebook SDK
+        callbackManager.onActivityResult(requestCode, resultCode, data)
     }
+
+
+
+
+
 
     private fun signInWithGoogle(){
         auth = FirebaseAuth.getInstance()
@@ -102,9 +132,30 @@ class FirstScreenActivity: AppCompatActivity() {
         }
 
     }
-
-
-
-
-
+    private fun handleFacebookAccessToken(token: AccessToken) {
+        val credential = FacebookAuthProvider.getCredential(token.token)
+        auth.signInWithCredential(credential)
+            .addOnCompleteListener(this) { task ->
+                if (task.isSuccessful) {
+                    // Sign in success, update UI with the signed-in user's information
+                    val user = auth.currentUser
+                    Toast.makeText(this, "Authentication success.", Toast.LENGTH_SHORT).show()
+                    val intent : Intent = Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                } else {
+                    // If sign in fails, display a message to the user.
+                    Toast.makeText(this, "Authentication failed.", Toast.LENGTH_SHORT).show()
+                }
+            }
+    }
 }
+
+
+
+
+
+
+
+
+
+

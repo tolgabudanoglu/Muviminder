@@ -11,6 +11,13 @@
     <color name="colorPrimaryDark">#1F1C26</color>
     <color name="colorAccent">#CE2A5E</color>
     <color name="facebookBlue">#4267B2</color>
+    <color name="colorTextIcons">#FFFFFF</color>
     <color name="googleColor">#EA4335</color>
+    <color name="colorAccent2">#0097FB</color>
+    <color name="colorPrimaryLight">#1E2746</color>
+    <color name="colorTextPrimary">#CBD5ED</color>
+    <color name="colorTextSecondary">#4A5B82</color>
+    <color name="colorTextOther">#5AD303</color>
+    <color name="colorThemeExtra">#FF5252</color>
 
 </resources>

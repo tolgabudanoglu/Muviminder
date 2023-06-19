@@ -28,9 +28,7 @@ class MainActivity : AppCompatActivity() {
     private fun setUserSettings(){
         var kullanici = FirebaseAuth.getInstance().currentUser
         if (kullanici != null){
-            tvKullaniciAdi.text = if (kullanici.displayName.isNullOrEmpty())"tanımlanmadı" else kullanici.displayName
-            tvMail.text = kullanici.email
-            tvUserId.text = kullanici.uid
+
 
         }
     }

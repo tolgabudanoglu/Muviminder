@@ -1,16 +1,17 @@
-package com.example.muviminder
+package com.example.muviminder.activities
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import androidx.core.app.ShareCompat.IntentBuilder
+import com.example.muviminder.R
+import com.example.muviminder.UserSettings
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuth.AuthStateListener
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
+
 
     lateinit var myAuthStateListener: FirebaseAuth.AuthStateListener
 
@@ -41,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                 if (kullanici != null){
 
                 }else{
-                    var intent = Intent(this@MainActivity,LoginActivity::class.java)
+                    var intent = Intent(this@MainActivity, LoginActivity::class.java)
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     startActivity(intent)
                     finish()
@@ -65,13 +66,13 @@ class MainActivity : AppCompatActivity() {
                 signOut()
                 return true
             }
-            R.id.HesapAyarları->{
-                var intent = Intent(this,UserSettings::class.java)
+            R.id.HesapAyarları ->{
+                var intent = Intent(this, UserSettings::class.java)
                 startActivity(intent)
                 return true
             }
-            R.id.profil->{
-                var intent = Intent(this,ProfileActivity::class.java)
+            R.id.profil ->{
+                var intent = Intent(this, ProfileActivity::class.java)
                 startActivity(intent)
                 return true
             }
@@ -94,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     private fun kullaciyiKontrolEt() {
         var kullanici = FirebaseAuth.getInstance().currentUser
         if (kullanici == null){
-            var intent = Intent(this@MainActivity,LoginActivity::class.java)
+            var intent = Intent(this@MainActivity, LoginActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()

@@ -18,7 +18,7 @@
         android:animateLayoutChanges="true"
         android:background="@color/colorPrimary"
         tools:context=".activities.MainActivity">
-        
+
         <LinearLayout
             android:id="@+id/layoutHeader"
             android:layout_width="match_parent"
@@ -43,7 +43,7 @@
                 android:textColor="@color/colorTextIcons"
                 android:textSize="@dimen/_14ssp"
                 tools:ignore="Suspicious0dp" />
-            
+
             <ImageView
                 android:id="@+id/imageWatchlist"
                 android:layout_width="@dimen/_24sdp"

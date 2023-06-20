@@ -1,4 +1,4 @@
-package com.example.muviminder
+package com.example.muviminder.activities
 
 import android.app.Activity
 import android.content.Intent
@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import com.example.muviminder.R
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
@@ -123,7 +124,7 @@ class FirstScreenActivity: AppCompatActivity() {
         val credential = GoogleAuthProvider.getCredential(account.idToken,null)
         auth.signInWithCredential(credential).addOnCompleteListener{
             if (it.isSuccessful){
-                val intent : Intent = Intent(this,MainActivity::class.java)
+                val intent : Intent = Intent(this, HomeScreen::class.java)
                 startActivity(intent)
 
             }else{
@@ -140,7 +141,7 @@ class FirstScreenActivity: AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     val user = auth.currentUser
                     Toast.makeText(this, "Authentication success.", Toast.LENGTH_SHORT).show()
-                    val intent : Intent = Intent(this,MainActivity::class.java)
+                    val intent : Intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                 } else {
                     // If sign in fails, display a message to the user.

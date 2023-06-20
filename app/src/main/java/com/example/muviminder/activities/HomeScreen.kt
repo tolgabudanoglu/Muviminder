@@ -1,5 +1,6 @@
 package com.example.muviminder.activities
 
+
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -19,6 +20,7 @@ class HomeScreen : AppCompatActivity() {
     private var activityMainBinding : ActivityHomeScreenBinding? = null
     private val tvShows: MutableList<TvShow> = ArrayList()
     private var tvShowsAdapter: TVShowsAdapter? = null
+    private var currentPage = 1
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_home_screen)
@@ -42,10 +44,10 @@ class HomeScreen : AppCompatActivity() {
 
     private val mostPopularTVShows: Unit
         private get() {
-            activityMainBinding!!.isLoading = true
+            toggleLoading()
             viewModel!!.getMostPopularTVShows(0)
                 .observe(this, Observer { mostPopularTVShowResponse: TVShowResponse? ->
-                    activityMainBinding!!.isLoading = false
+                    toggleLoading()
                     if (mostPopularTVShowResponse != null) {
                         if (mostPopularTVShowResponse.tvShows != null) {
                             tvShows.addAll(mostPopularTVShowResponse.tvShows)
@@ -54,4 +56,13 @@ class HomeScreen : AppCompatActivity() {
                     }
                 })
         }
+    private fun toggleLoading() {
+        if (currentPage == 1) {
+            activityMainBinding?.isLoading =
+                !(activityMainBinding?.isLoading == true && activityMainBinding?.isLoading == true)
+        } else {
+            activityMainBinding?.isLoadingMore = (activityMainBinding?.isLoadingMore
+                ?: activityMainBinding?.isLoadingMore) != true
+        }
+    }
 }

@@ -1,6 +1,6 @@
-/*package com.example.muviminder.activities;
+package com.example.muviminder.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
+/*import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
@@ -20,6 +20,7 @@ public class MainActivity2 extends AppCompatActivity {
     private MostPopularTVShowViewModel viewModel;
     private List<TvShow> tvShows = new ArrayList<>();
     private TVShowsAdapter tvShowsAdapter;
+    private int currentPage =1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class MainActivity2 extends AppCompatActivity {
 
     private void getMostPopularTVShows(){
         activityMainBinding.setIsLoading(true);
-        viewModel.getMostPopularTVShows(0).observe(this,mostPopularTVShowResponse ->{
+        viewModel.getMostPopularTVShows(currentPage).observe(this,mostPopularTVShowResponse ->{
             activityMainBinding.setIsLoading(false);
             if (mostPopularTVShowResponse != null){
                 if (mostPopularTVShowResponse.getTvShows() != null){
@@ -40,5 +41,21 @@ public class MainActivity2 extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void toggleLoading(){
+        if (currentPage==1){
+            if (activityMainBinding.getIsLoading() !=null && activityMainBinding.getIsLoading()){
+                activityMainBinding.setIsLoading(false);
+            }else {
+                activityMainBinding.setIsLoading(true);
+            }
+        }else {
+            if (activityMainBinding.getIsLoadingMore() !=null && activityMainBinding.getIsLoadingMore()){
+                activityMainBinding.setIsLoadingMore(false);
+            }else {
+                activityMainBinding.setIsLoadingMore(true);
+            }
+        }
     }
 }*/

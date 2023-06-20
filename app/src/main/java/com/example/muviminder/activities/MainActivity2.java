@@ -1,7 +1,9 @@
-package com.example.muviminder.activities;
+/*package com.example.muviminder.activities;
 
-/*import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
@@ -13,6 +15,8 @@ import com.example.muviminder.viewModel.MostPopularTVShowViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.annotations.NonNull;
 
 public class MainActivity2 extends AppCompatActivity {
 
@@ -27,6 +31,26 @@ public class MainActivity2 extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
 
+    }
+
+
+    private void doInitialization(){
+        activityMainBinding.tvShowRecyclerView.setHasFixedSize(true);
+        viewModel = new ViewModelProvider(this).get(mostPopularTVShowsModel.class);
+        tvShowsAdapter = new TVShowsAdapter(tvShows);
+        activityMainBinding.tvShowsRecyclerView.setAdapter(tvShowsAdapter);
+        activityMainBinding.tvShowsRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView , int dx,int dy){
+                super.onScrolled(recyclerView,dx,dy);
+                if (!activityMainBinding.tvShowsRecyclerView.canScrollVertically(1)){
+                    if (currentPage <= totalAvailablePages){
+                        currentPage +=1;
+                        getMostPopularTVShows();
+                    }
+                }
+            }
+        });
     }
 
     private void getMostPopularTVShows(){

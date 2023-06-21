@@ -10,5 +10,4 @@ interface ApiService {
     fun getMostPopularTVShows(@Query("page") page: Int): Call<TVShowResponse?>?
 
 
-
 }

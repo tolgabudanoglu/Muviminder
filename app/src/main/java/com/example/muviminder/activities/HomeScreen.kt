@@ -1,9 +1,9 @@
 package com.example.muviminder.activities
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.muviminder.R
 import com.example.muviminder.adapters.TVShowsAdapter
 import com.example.muviminder.databinding.ActivityHomeScreenBinding
+import com.example.muviminder.listeners.TVShowsListener
 
 import com.example.muviminder.models.TVShowResponse
 import com.example.muviminder.models.TvShow
 import com.example.muviminder.viewModel.MostPopularTVShowViewModel
 
-class HomeScreen : AppCompatActivity() {
+class HomeScreen : AppCompatActivity() ,TVShowsListener {
     private var viewModel: MostPopularTVShowViewModel? = null
     private var activityMainBinding : ActivityHomeScreenBinding? = null
     private val tvShows: MutableList<TvShow> = ArrayList()
@@ -41,7 +42,7 @@ class HomeScreen : AppCompatActivity() {
         viewModel = ViewModelProvider(this).get<MostPopularTVShowViewModel>(
             MostPopularTVShowViewModel::class.java
         )
-        tvShowsAdapter = TVShowsAdapter(tvShows)
+        tvShowsAdapter = TVShowsAdapter(tvShows,this)
         activityMainBinding?.tvShowsRecyclerView?.setAdapter(tvShowsAdapter)
         activityMainBinding?.tvShowsRecyclerView?.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
@@ -91,5 +92,18 @@ class HomeScreen : AppCompatActivity() {
             activityMainBinding?.isLoadingMore = (activityMainBinding?.isLoadingMore
                 ?: activityMainBinding?.isLoadingMore) != true
         }
+    }
+
+    override fun onTVShowClicked(tvShow: TvShow?) {
+
+        val intent = Intent(applicationContext, TVShowDetailActivity::class.java)
+        intent.putExtra("id",tvShow?.id)
+        intent.putExtra("name",tvShow?.name)
+        intent.putExtra("startDate",tvShow?.startDate)
+        intent.putExtra("country",tvShow?.country)
+        intent.putExtra("network",tvShow?.network)
+        intent.putExtra("status",tvShow?.status)
+        startActivity(intent)
+
     }
 }

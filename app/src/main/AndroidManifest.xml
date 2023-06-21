@@ -15,12 +15,8 @@
         android:theme="@style/Theme.Muviminder"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
-        <activity
-            android:name=".MainActivity3"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity2"
-            android:exported="false" />
+
+
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
@@ -29,6 +25,10 @@
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token" />
 
+        <activity android:name=".activities.TVShowDetailActivity"
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".activities.ProfileActivity"
             android:exported="false">
@@ -36,10 +36,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity android:name=".activities.HomeScreen"
-            android:exported="true"
-            />
-
+        <activity
+            android:name=".activities.HomeScreen"
+            android:exported="true" />
         <activity
             android:name=".UserSettings"
             android:exported="false">

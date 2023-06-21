@@ -2,27 +2,27 @@ package com.example.muviminder.repositories
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.muviminder.models.TVShowResponse
+import com.example.muviminder.models.TVShowDetailsResponse
 import com.example.muviminder.network.ApiClient.retrofit
 import com.example.muviminder.network.ApiService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MostPopularTVShowRepository {
+class TVShowDetailsRepository {
     private val apiService: ApiService = retrofit!!.create(ApiService::class.java)
 
-    fun getMostPopularTVShow(page: Int): LiveData<TVShowResponse?> {
-        val data = MutableLiveData<TVShowResponse?>()
-        apiService.getMostPopularTVShows(page)!!.enqueue(object : Callback<TVShowResponse?> {
+    fun getTVShowDetails(tvShowId: String?): LiveData<TVShowDetailsResponse?> {
+        val data = MutableLiveData<TVShowDetailsResponse?>()
+        apiService.getTVShowDetails(tvShowId!!).enqueue(object : Callback<TVShowDetailsResponse?> {
             override fun onResponse(
-                call: Call<TVShowResponse?>,
-                response: Response<TVShowResponse?>
+                call: Call<TVShowDetailsResponse?>,
+                response: Response<TVShowDetailsResponse?>
             ) {
                 data.value = response.body()
             }
 
-            override fun onFailure(call: Call<TVShowResponse?>, t: Throwable) {
+            override fun onFailure(call: Call<TVShowDetailsResponse?>, t: Throwable) {
                 data.value = null
             }
         })

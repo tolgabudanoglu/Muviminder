@@ -36,8 +36,9 @@ class TVShowDetailActivity : AppCompatActivity() {
             tvShowDetailsViewModel!!.getTVShowDetails(tvShowId).observe(
                 this, Observer { tvShowDetails: TVShowDetailsResponse? ->
                     activityTvshowDetailBinding!!.isLoading = false
-                    Toast.makeText(applicationContext, tvShowDetails?.tvShowDetails!!.url, Toast.LENGTH_SHORT)
-                        .show()
+                    if(tvShowDetails?.tvShowDetails != null){
+
+                    }
                 }
             )
         }

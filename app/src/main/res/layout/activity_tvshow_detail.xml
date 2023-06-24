@@ -25,7 +25,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/sliderViewPager"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_100sdp"
+            android:layout_height="@dimen/_150sdp"
             android:orientation="horizontal"
             android:visibility="gone"
             app:layout_constraintTop_toTopOf="parent">
@@ -35,7 +35,7 @@
         <View
             android:id="@+id/viewFadingEdge"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
+            android:layout_height="@dimen/_60sdp"
             android:background="@drawable/background_fading_edge"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/sliderViewPager">

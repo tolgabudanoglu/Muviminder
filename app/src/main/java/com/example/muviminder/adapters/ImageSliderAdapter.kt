@@ -8,7 +8,7 @@ import com.example.muviminder.R
 import com.example.muviminder.adapters.ImageSliderAdapter.ImageSliderViewHolder
 import com.example.muviminder.databinding.ItemContainerSliderImageBinding
 
-class ImageSliderAdapter(private val sliderImages: Array<String>) :
+class ImageSliderAdapter(private val sliderImages: List<String>?) :
     RecyclerView.Adapter<ImageSliderViewHolder>() {
     private var layoutInflater: LayoutInflater? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageSliderViewHolder {
@@ -22,11 +22,11 @@ class ImageSliderAdapter(private val sliderImages: Array<String>) :
     }
 
     override fun onBindViewHolder(holder: ImageSliderViewHolder, position: Int) {
-        holder.bindSliderImage(sliderImages[position])
+        holder.bindSliderImage(sliderImages?.get(position))
     }
 
     override fun getItemCount(): Int {
-        return sliderImages.size
+        return sliderImages!!.size
     }
 
     class ImageSliderViewHolder(private val itemContainerSliderImageBinding: ItemContainerSliderImageBinding) :

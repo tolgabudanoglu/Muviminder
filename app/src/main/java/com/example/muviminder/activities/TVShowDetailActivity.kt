@@ -2,10 +2,16 @@ package com.example.muviminder.activities
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.viewpager2.widget.ViewPager2
+import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.muviminder.R
 import com.example.muviminder.adapters.ImageSliderAdapter
 import com.example.muviminder.databinding.ActivityTvshowDetailBinding
@@ -51,6 +57,61 @@ class TVShowDetailActivity : AppCompatActivity() {
         activityTvshowDetailBinding?.sliderViewPager?.adapter = ImageSliderAdapter(sliderImages)
         activityTvshowDetailBinding?.sliderViewPager?.visibility = View.VISIBLE
         activityTvshowDetailBinding?.viewFadingEdge?.visibility = View.VISIBLE
+        setupSliderIndicator(sliderImages!!.size)
+        activityTvshowDetailBinding?.sliderViewPager?.registerOnPageChangeCallback(object :
+            OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                setCurrentSliderIndicator(position)
+            }
+        }
+        )
+    }
+
+    private fun setupSliderIndicator(count: Int){
+        val indicators = arrayOfNulls<ImageView>(count)
+        val layoutParams: LinearLayout.LayoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        layoutParams.setMargins(8, 0, 8, 0)
+        for (i in 1 until indicators.size) {
+            indicators[i] = ImageView(applicationContext)
+            indicators[i]!!.setImageDrawable(
+                ContextCompat.getDrawable(
+                    applicationContext,
+                    R.drawable.background_slider_indicator_inactive
+                )
+            )
+            indicators[i]!!.layoutParams = layoutParams
+            activityTvshowDetailBinding?.layoutSliderIndicators?.addView(indicators[i])
+
+        }
+        activityTvshowDetailBinding?.layoutSliderIndicators?.visibility = View.VISIBLE
+        setCurrentSliderIndicator(0)
+
+
+    }
+    private fun setCurrentSliderIndicator(position: Int) {
+        val childCount: Int = activityTvshowDetailBinding?.layoutSliderIndicators!!.childCount
+        for (i in 0 until childCount) {
+            val imageView =
+                activityTvshowDetailBinding?.layoutSliderIndicators!!.getChildAt(i) as ImageView
+            if (i == position) {
+                imageView.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        applicationContext,
+                        R.drawable.background_slider_indicator_active
+                    )
+                )
+            } else {
+                imageView.setImageDrawable(
+                    ContextCompat.getDrawable(
+                        applicationContext,
+                        R.drawable.background_slider_indicator_inactive
+                    )
+                )
+            }
+        }
     }
 
 }

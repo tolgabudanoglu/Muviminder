@@ -43,7 +43,7 @@ class HomeScreen : AppCompatActivity() ,TVShowsListener {
             MostPopularTVShowViewModel::class.java
         )
         tvShowsAdapter = TVShowsAdapter(tvShows,this)
-        activityMainBinding?.tvShowsRecyclerView?.setAdapter(tvShowsAdapter)
+        activityMainBinding?.tvShowsRecyclerView?.adapter = tvShowsAdapter
         activityMainBinding?.tvShowsRecyclerView?.addOnScrollListener(object :
             RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {

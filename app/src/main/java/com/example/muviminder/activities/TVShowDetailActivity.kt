@@ -32,6 +32,9 @@ class TVShowDetailActivity : AppCompatActivity() {
         tvShowDetailsViewModel = ViewModelProvider(this).get(
             TVShowDetailsViewModel::class.java
         )
+        activityTvshowDetailBinding?.imageBack?.setOnClickListener {
+            onBackPressed()
+        }
         tVShowDetails
     }
 
@@ -45,8 +48,10 @@ class TVShowDetailActivity : AppCompatActivity() {
                     if(tvShowDetails?.tvShowDetails != null){
                         if(tvShowDetails.tvShowDetails.pictures != null){
                             loadImageSlider(tvShowDetails.tvShowDetails.pictures)
-
                         }
+                        activityTvshowDetailBinding?.tvShowImageUrl = tvShowDetails.tvShowDetails.imagePath
+                        activityTvshowDetailBinding?.imageTvShow?.visibility = View.VISIBLE
+
 
                     }
                 }

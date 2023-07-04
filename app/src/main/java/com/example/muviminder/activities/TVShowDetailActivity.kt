@@ -51,6 +51,7 @@ class TVShowDetailActivity : AppCompatActivity() {
                         }
                         activityTvshowDetailBinding?.tvShowImageUrl = tvShowDetails.tvShowDetails.imagePath
                         activityTvshowDetailBinding?.imageTvShow?.visibility = View.VISIBLE
+                        loadBasicTVShowDetails()
 
 
                     }
@@ -118,5 +119,16 @@ class TVShowDetailActivity : AppCompatActivity() {
             }
         }
     }
+    private fun loadBasicTVShowDetails(){
+        activityTvshowDetailBinding?.tvShowName=intent.getStringExtra("name")
+        activityTvshowDetailBinding?.networkCountry = intent.getStringExtra("network") + "(" + intent.getStringExtra("country") + ")"
+        activityTvshowDetailBinding?.status=intent.getStringExtra("status")
+        activityTvshowDetailBinding?.startedDate = intent.getStringExtra("startDate")
+        activityTvshowDetailBinding?.tvName?.visibility = View.VISIBLE
+        activityTvshowDetailBinding?.tvNetworkCountry?.visibility= View.VISIBLE
+        activityTvshowDetailBinding?.tvStatus?.visibility = View.VISIBLE
+        activityTvshowDetailBinding?.tvStarted?.visibility = View.VISIBLE
+    }
+
 
 }

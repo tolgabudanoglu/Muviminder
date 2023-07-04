@@ -1,16 +1,17 @@
 package com.example.muviminder.activities
 
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.text.HtmlCompat
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.muviminder.R
 import com.example.muviminder.adapters.ImageSliderAdapter
@@ -51,6 +52,29 @@ class TVShowDetailActivity : AppCompatActivity() {
                         }
                         activityTvshowDetailBinding?.tvShowImageUrl = tvShowDetails.tvShowDetails.imagePath
                         activityTvshowDetailBinding?.imageTvShow?.visibility = View.VISIBLE
+                        activityTvshowDetailBinding!!.description = tvShowDetails.tvShowDetails.description?.let {
+                            HtmlCompat.fromHtml(
+                                it,
+                                HtmlCompat.FROM_HTML_MODE_LEGACY
+
+
+                            ).toString()
+                        }
+                        activityTvshowDetailBinding?.tvDescription?.visibility = View.VISIBLE
+                        activityTvshowDetailBinding?.tvReadMore?.visibility = View.VISIBLE
+                        activityTvshowDetailBinding?.tvReadMore?.setOnClickListener {
+                            if (activityTvshowDetailBinding?.tvReadMore?.text.toString().equals("Daha fazla oku")){
+                                activityTvshowDetailBinding?.tvDescription?.maxLines= Int.MAX_VALUE
+                                activityTvshowDetailBinding?.tvDescription?.ellipsize = null
+                                activityTvshowDetailBinding?.tvReadMore?.text = getString(R.string.read_Less)
+                            }else{
+                                activityTvshowDetailBinding?.tvDescription?.maxLines = 3
+                                activityTvshowDetailBinding?.tvDescription?.ellipsize = TextUtils.TruncateAt.END
+                                activityTvshowDetailBinding?.tvReadMore?.text = getString(R.string.read_More)
+
+                            }
+                        }
+
                         loadBasicTVShowDetails()
 
 

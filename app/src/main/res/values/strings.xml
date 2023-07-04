@@ -7,6 +7,8 @@
     <string name="fb_login_protocol_scheme">fb2373027829542330</string>
     <string name="facebook_client_token">3e3cb0de1fb912e7e4fc6229f6c4a425</string>
     <string name="tv_shows_most_popular"> TV Dizileri </string>
+    <string name="read_More">Daha fazla oku</string>
+    <string name="read_Less">Daha az oku</string>
 
 
 </resources>

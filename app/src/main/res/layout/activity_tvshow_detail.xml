@@ -363,13 +363,48 @@
                     app:layout_constraintTop_toBottomOf="@id/layoutMisc">
 
                 </View>
-                
-                
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnWebsite"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_8sdp"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/website"
+                    android:textSize="@dimen/_12ssp"
+                    android:visibility="gone"
+                    android:backgroundTint="@color/colorAccent"
+                    app:cornerRadius="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btnEpisodes"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider2">
 
+                </com.google.android.material.button.MaterialButton>
 
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnEpisodes"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:fontFamily="@font/ubuntu_medium"
+                    android:includeFontPadding="false"
+                    android:text="@string/bolumler"
+                    android:textSize="@dimen/_12ssp"
+                    android:textColor="#212121"
+                    android:visibility="gone"
+                    android:backgroundTint="@color/colorTextOther"
+                    app:cornerRadius="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/btnWebsite"
+                    app:layout_constraintTop_toBottomOf="@id/viewDivider2">
 
-
+                </com.google.android.material.button.MaterialButton>
 
 
 
@@ -377,13 +412,6 @@
 
         </ScrollView>
         
-
-
-
-
-
-
-
 
 
 

@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.Muviminder" parent="Theme.AppCompat.NoActionBar">
+    <style name="Theme.Muviminder" parent="Theme.MaterialComponents.DayNight.NoActionBar.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">#2C273C</item>
         <item name="colorPrimaryDark">#1F1C26</item>

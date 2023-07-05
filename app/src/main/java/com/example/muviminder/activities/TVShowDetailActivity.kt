@@ -1,5 +1,7 @@
 package com.example.muviminder.activities
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
@@ -85,10 +87,18 @@ class TVShowDetailActivity : AppCompatActivity() {
                         }else{
                             activityTvshowDetailBinding?.genre = "N/A"
                         }
-                        activityTvshowDetailBinding?.runtime = tvShowDetails.tvShowDetails.runtime + "Min"
+                        activityTvshowDetailBinding?.runtime = tvShowDetails.tvShowDetails.runtime + " Min"
                         activityTvshowDetailBinding?.viewDivider1?.visibility = View.VISIBLE
                         activityTvshowDetailBinding?.layoutMisc?.visibility = View.VISIBLE
                         activityTvshowDetailBinding?.viewDivider2?.visibility = View.VISIBLE
+                        activityTvshowDetailBinding?.btnWebsite?.setOnClickListener {
+
+                            val reurl= (Uri.parse(tvShowDetails.tvShowDetails.url))
+                            var intent = Intent(Intent.ACTION_VIEW,reurl)
+                            startActivity(intent)
+                        }
+                        activityTvshowDetailBinding?.btnWebsite?.visibility = View.VISIBLE
+                        activityTvshowDetailBinding?.btnEpisodes?.visibility = View.VISIBLE
 
                         loadBasicTVShowDetails()
 

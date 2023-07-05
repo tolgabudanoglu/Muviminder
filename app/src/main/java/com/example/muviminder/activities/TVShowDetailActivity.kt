@@ -18,6 +18,8 @@ import com.example.muviminder.adapters.ImageSliderAdapter
 import com.example.muviminder.databinding.ActivityTvshowDetailBinding
 import com.example.muviminder.models.TVShowDetailsResponse
 import com.example.muviminder.viewModel.TVShowDetailsViewModel
+import java.lang.Double
+import java.util.*
 
 class TVShowDetailActivity : AppCompatActivity() {
     private var activityTvshowDetailBinding: ActivityTvshowDetailBinding? = null
@@ -74,6 +76,19 @@ class TVShowDetailActivity : AppCompatActivity() {
 
                             }
                         }
+                        activityTvshowDetailBinding?.rating = String.format(Locale.getDefault(),"%.2f",
+                            tvShowDetails.tvShowDetails.rating?.let { Double.parseDouble(it) }
+                        )
+
+                        if (tvShowDetails.tvShowDetails.genres !=null){
+                            activityTvshowDetailBinding?.genre = tvShowDetails.tvShowDetails.genres[0]
+                        }else{
+                            activityTvshowDetailBinding?.genre = "N/A"
+                        }
+                        activityTvshowDetailBinding?.runtime = tvShowDetails.tvShowDetails.runtime + "Min"
+                        activityTvshowDetailBinding?.viewDivider1?.visibility = View.VISIBLE
+                        activityTvshowDetailBinding?.layoutMisc?.visibility = View.VISIBLE
+                        activityTvshowDetailBinding?.viewDivider2?.visibility = View.VISIBLE
 
                         loadBasicTVShowDetails()
 

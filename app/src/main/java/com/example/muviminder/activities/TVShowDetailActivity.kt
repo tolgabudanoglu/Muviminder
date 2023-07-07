@@ -1,13 +1,17 @@
 package com.example.muviminder.activities
 
 import android.content.Intent
+import android.content.res.Resources
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
+import androidx.annotation.ContentView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
@@ -16,16 +20,23 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
 import com.example.muviminder.R
+import com.example.muviminder.adapters.EpisodesAdapter
 import com.example.muviminder.adapters.ImageSliderAdapter
 import com.example.muviminder.databinding.ActivityTvshowDetailBinding
+import com.example.muviminder.databinding.LayoutEpisodesBottomSheetBinding
+import com.example.muviminder.models.Episode
 import com.example.muviminder.models.TVShowDetailsResponse
 import com.example.muviminder.viewModel.TVShowDetailsViewModel
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import java.lang.Double
 import java.util.*
 
 class TVShowDetailActivity : AppCompatActivity() {
     private var activityTvshowDetailBinding: ActivityTvshowDetailBinding? = null
     private var tvShowDetailsViewModel: TVShowDetailsViewModel? = null
+    private var episodesBottomSheetDialog: BottomSheetDialog? = null
+    private var layoutEpisodesBottomSheetBinding : LayoutEpisodesBottomSheetBinding? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         activityTvshowDetailBinding =
@@ -99,6 +110,51 @@ class TVShowDetailActivity : AppCompatActivity() {
                         }
                         activityTvshowDetailBinding?.btnWebsite?.visibility = View.VISIBLE
                         activityTvshowDetailBinding?.btnEpisodes?.visibility = View.VISIBLE
+
+                        activityTvshowDetailBinding?.btnEpisodes?.setOnClickListener {
+                            if (episodesBottomSheetDialog == null){
+                                episodesBottomSheetDialog = BottomSheetDialog(this@TVShowDetailActivity)
+                                layoutEpisodesBottomSheetBinding = DataBindingUtil.inflate(
+                                    LayoutInflater.from(this@TVShowDetailActivity),
+                                    R.layout.layout_episodes_bottom_sheet,
+                                    findViewById(R.id.episodesContainer),
+                                    false
+                                )
+                                episodesBottomSheetDialog!!.setContentView(layoutEpisodesBottomSheetBinding!!.root)
+                                layoutEpisodesBottomSheetBinding?.episodesRv?.adapter =
+                                    tvShowDetails.tvShowDetails.episodes?.let { it1 ->
+                                        EpisodesAdapter(
+                                            it1
+                                        )
+                                    }
+                                layoutEpisodesBottomSheetBinding!!.textTittle.setText(
+                                    String.format("Episodes | %s",intent.getStringExtra("name"))
+                                )
+                                layoutEpisodesBottomSheetBinding!!.imageClose.setOnClickListener {
+                                    episodesBottomSheetDialog!!.dismiss()
+                                }
+
+                                val frameLayout = episodesBottomSheetDialog!!.findViewById<FrameLayout>(
+                                    com.google.android.material.R.id.design_bottom_sheet
+                                )
+                                if (frameLayout != null) {
+                                    val bottomSheetBehavior = BottomSheetBehavior.from<View>(frameLayout)
+                                    bottomSheetBehavior.peekHeight = Resources.getSystem().displayMetrics.heightPixels
+                                    bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+                                }
+                                episodesBottomSheetDialog!!.show()
+
+
+
+
+
+
+
+
+                            }
+                        }
+
+
 
                         loadBasicTVShowDetails()
 

@@ -1,9 +1,14 @@
 package com.example.muviminder.models
 
 
+
 import com.google.gson.annotations.SerializedName
 
-data class TvShow(
+
+
+
+ data class TvShow  (
+
     @SerializedName("country")
     val country: String?,
 
@@ -12,13 +17,16 @@ data class TvShow(
 
     @SerializedName("image_thumbnail_path")
     val imageThumbnailPath: String?,
+
     @SerializedName("name")
     val name: String?,
+
     @SerializedName("network")
     val network: String?,
 
     @SerializedName("start_date")
     val startDate: String?,
+
     @SerializedName("status")
-    val status: String?
+    val status: String? = null
 )
